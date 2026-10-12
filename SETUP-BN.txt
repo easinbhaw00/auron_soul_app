@@ -1,0 +1,29 @@
+AURON SOUL — আসল AI চালু করার ধাপ (ফ্রি)
+
+১) API key নাও
+   aistudio.google.com এ Google দিয়ে লগইন করে "Get API key" চাপো। কার্ড লাগে না।
+
+২) Backend বানাও (Cloudflare Workers, ফ্রি)
+   - dash.cloudflare.com এ অ্যাকাউন্ট খুলো
+   - Workers & Pages → Create → "Hello World" Worker → Deploy
+   - Edit code চাপো, backend/worker.js এর পুরো কোড পেস্ট করে Deploy করো
+   - Settings → Variables and Secrets:
+       Secret:  API_KEY = (তোমার key)
+       Text:    MODEL = gemini-2.5-flash
+   - Worker এর URL কপি করো (যেমন https://auron-soul-api.xxx.workers.dev)
+
+৩) অ্যাপে URL দাও
+   অ্যাপ খুলে Settings → AI connection এ URL পেস্ট করে "Save & test" চাপো।
+   অথবা index.html এ  const DEFAULT_API = ''  এর ভেতরে URL বসাও (সবার জন্য চালু হবে)।
+
+৪) ওয়েবসাইট হিসেবে চালু (ফ্রি)
+   Cloudflare Pages বা GitHub Pages এ এই ফোল্ডার আপলোড করো।
+
+৫) ফোন অ্যাপ হিসেবে
+   - সবচেয়ে সহজ: সাইট খুলে ব্রাউজারে "Add to Home screen / Install" (PWA, PC তেও হয়)
+   - APK চাইলে: pwabuilder.com এ সাইটের URL দিয়ে Android প্যাকেজ বানাও
+
+সতর্কতা:
+- ফ্রি tier এর লিমিট আছে এবং বদলাতে পারে; বেশি ইউজার হলে "limit reached" আসবে।
+- Google ফ্রি tier এ ডেটা তাদের প্রোডাক্ট উন্নতিতে ব্যবহার হতে পারে।
+- API key কখনো index.html এ বসাবে না।

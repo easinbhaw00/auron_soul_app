@@ -1,0 +1,54 @@
+AURON SOUL — FREE te app ready korar dhap (line by line)
+
+PART A: AI er key nao (free, card lage na)
+1. Browser e aistudio.google.com kholo.
+2. Google account diye login koro.
+3. "Get API key" chap.
+4. "Create API key" chap, tarpor key ta copy kore ekta jaygay rakho. Kauke dekhabe na.
+
+PART B: Backend banao (Cloudflare Workers, free)
+1. dash.cloudflare.com e jao, free account kholo, email verify koro.
+2. Bam pashe "Workers & Pages" chap.
+3. "Create" -> "Create Worker" chap. Name dao: auron-soul-api. "Deploy" chap.
+4. "Edit code" chap.
+5. Ager shob code muche feller, backend/worker.js er puro code paste koro.
+6. "Deploy" chap.
+7. Worker er "Settings" -> "Variables and Secrets" e jao.
+8. "Add" chap: Type = Secret, Name = API_KEY, Value = Part A er key. Save.
+9. Abar "Add" chap: Type = Text, Name = MODEL, Value = gemini-2.5-flash. Save.
+10. "Deploy" ekbar chap.
+11. Worker er URL copy koro (https://auron-soul-api.XXXX.workers.dev).
+12. Browser e oi URL er pore /health likhe kholo. {"ok":true,"configured":true} dekhale thik ache.
+
+PART C: URL ta app e boshao
+1. index.html ta text editor e kholo.
+2. const DEFAULT_API='' khuje ber koro.
+3. Quote er majhe Part B er URL boshao: const DEFAULT_API='https://auron-soul-api.XXXX.workers.dev'
+4. Save koro. (URL er shesh e / dio na.)
+
+PART D: Website e upload koro (free, HTTPS)
+Option 1 - Cloudflare Pages (shohoj):
+1. dash.cloudflare.com -> Workers & Pages -> Create -> Pages -> "Upload assets".
+2. Project name dao, auron_soul_classic folder er bhitorer shob file (backend folder bade chalaleo hoy) drag kore dao.
+3. Deploy chap. Tomar link pabe: https://projectname.pages.dev
+Option 2 - GitHub Pages:
+1. github.com e free account kholo, New repository banao (Public).
+2. "uploading an existing file" chap, shob file drag koro, Commit.
+3. Settings -> Pages -> Branch: main, folder: / (root) -> Save.
+4. Kichukkhon pore link ashbe: https://username.github.io/reponame
+
+PART E: Phone e app hishebe install
+Android: Chrome e link kholo -> menu (3 dot) -> "Install app" ba "Add to Home screen".
+iPhone: Safari e link kholo -> Share button -> "Add to Home Screen".
+PC: Chrome address bar er install icon chap.
+
+PART F: APK (Android, optional)
+1. pwabuilder.com kholo.
+2. Tomar site er link paste koro, "Start" chap.
+3. Package for stores -> Android -> Generate. Zip nao.
+4. APK ta bondhuder pathate paro. Play Store e dite hole developer account lage (ekbar fee).
+
+Shotorkota:
+- API key kokhono index.html e likhbe na. Shudhu Cloudflare Secret e.
+- Free limit ache; beshi user hole "limit reached" ashbe.
+- Update dile service-worker.js er CACHE_NAME er number baraba (v6 -> v7).
